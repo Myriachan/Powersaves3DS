@@ -1,3 +1,4 @@
+# coding: utf-8
 from __future__ import print_function
 from __future__ import unicode_literals
 
@@ -21,8 +22,8 @@ for x in xrange(256):
 
 # Slightly strange Datel CRC32 means we can't use binascii.crc32.
 def datel_crc32(data, crc = 0):
-    for b in data:
-        crc = DATEL_CRC32_TABLE[(crc & 0xFF) ^ ord(b)] ^ (crc >> 8)
+    for x in xrange(len(data)):
+        crc = DATEL_CRC32_TABLE[(crc & 0xFF) ^ ord(data[x:x + 1])] ^ (crc >> 8)
     return crc
 
 
